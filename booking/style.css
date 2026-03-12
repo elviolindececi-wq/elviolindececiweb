@@ -1,0 +1,21 @@
+.booking-page{padding-top:56px}
+.booking-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
+.booking-form-wrap,.booking-copy{border-radius:28px;background:rgba(10,28,46,.78);border:1px solid rgba(255,255,255,.08);box-shadow:0 24px 80px rgba(0,0,0,.35);padding:28px}
+.booking-highlights{grid-template-columns:1fr 1fr;margin:26px 0}
+.compact-card{padding:22px}
+.booking-form label,.booking-form span{display:block}
+.booking-form span{font-size:.95rem;font-weight:700;color:#eef2f6;margin-bottom:10px}
+.booking-form input,.booking-form select,.booking-form textarea{
+  width:100%;border-radius:18px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);color:#fff;padding:15px 16px;font:inherit;outline:none
+}
+.booking-form input:focus,.booking-form select:focus,.booking-form textarea:focus{border-color:rgba(240,210,162,.45);box-shadow:0 0 0 3px rgba(201,151,77,.15)}
+.booking-form textarea{resize:vertical;min-height:140px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.booking-form > label{margin-bottom:16px}
+.booking-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.booking-note{margin-top:18px;font-size:.94rem}
+.inline-nav{display:flex !important}
+@media (max-width: 900px){
+  .booking-grid,.field-row,.booking-highlights{grid-template-columns:1fr}
+}

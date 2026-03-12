@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reservar — El Violín de Ceci</title>
+  <meta name="description" content="Consultá disponibilidad de El Violín de Ceci para bodas y eventos. Formulario de reserva con envío directo por email y WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=2" />
+  <link rel="stylesheet" href="./style.css?v=1" />
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="../">
+        <span class="brand-mark">🎻</span>
+        <span>
+          <strong>El Violín de Ceci</strong>
+          <small>Landing de reserva</small>
+        </span>
+      </a>
+      <nav class="nav-menu booking-nav inline-nav">
+        <a href="../">Inicio</a>
+        <a href="../test/">Test para novios</a>
+        <a href="../reviews/">Reseñas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section booking-page">
+    <div class="container booking-grid">
+      <section class="booking-copy reveal visible">
+        <p class="eyebrow">Reserva y disponibilidad</p>
+        <h1>Contame sobre tu evento</h1>
+        <p class="lead">Esta landing está pensada para convertir mejor. Resume la propuesta, baja la fricción del contacto y permite enviar un mensaje listo a <strong>elviolindececi@gmail.com</strong> sin backend adicional.</p>
+
+        <div class="cards-grid booking-highlights">
+          <article class="info-card compact-card">
+            <span class="card-tag">Base</span>
+            <h3>Paraguay</h3>
+            <p>Disponible para bodas, eventos privados y corporativos.</p>
+          </article>
+          <article class="info-card compact-card">
+            <span class="card-tag">Movilidad</span>
+            <h3>Disponible para viajar</h3>
+            <p>La web ahora lo comunica desde arriba y también en esta landing.</p>
+          </article>
+        </div>
+
+        <div class="contact-inline">
+          <a href="tel:+595985689454">📞 +595 985 689454</a>
+          <a href="https://wa.me/595985689454" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a href="mailto:elviolindececi@gmail.com">✉️ elviolindececi@gmail.com</a>
+        </div>
+      </section>
+
+      <section class="booking-form-wrap reveal visible">
+        <form id="bookingForm" class="booking-form" novalidate>
+          <div class="field-row">
+            <label>
+              <span>Nombre y apellido</span>
+              <input type="text" id="nombre" required placeholder="Ej: Paula González" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" id="email" required placeholder="Ej: hola@email.com" />
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>
+              <span>Teléfono</span>
+              <input type="tel" id="telefono" placeholder="Ej: +595 985 689454" />
+            </label>
+            <label>
+              <span>Tipo de evento</span>
+              <select id="tipo" required>
+                <option value="" selected disabled>Elegí una opción</option>
+                <option>Boda</option>
+                <option>Evento corporativo</option>
+                <option>Evento privado</option>
+                <option>Otro</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>
+              <span>Fecha</span>
+              <input type="date" id="fecha" />
+            </label>
+            <label>
+              <span>Ciudad / Venue</span>
+              <input type="text" id="lugar" placeholder="Ej: Asunción / Bellagio" />
+            </label>
+          </div>
+
+          <label>
+            <span>Formato de interés</span>
+            <select id="formato">
+              <option>Violín solista</option>
+              <option>Dúo · violín + piano</option>
+              <option>Trío · violín + piano de cola + cello</option>
+              <option>No estoy segura todavía</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Mensaje</span>
+            <textarea id="mensaje" rows="5" placeholder="Contame cómo imaginás el momento, cuántos invitados tendrán y qué tipo de experiencia quieren crear."></textarea>
+          </label>
+
+          <div class="booking-actions">
+            <button class="btn" type="submit">Enviar por email</button>
+            <a class="btn btn-outline" id="waBookingLink" href="https://wa.me/595985689454" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          </div>
+
+          <p class="booking-note">El formulario abre el cliente de correo del visitante con el mensaje ya armado. Si más adelante querés, esto se puede conectar a Formspree, Netlify Forms o un backend propio.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="./app.js?v=1"></script>
+</body>
+</html>
