@@ -87,19 +87,49 @@ if (siteMusic) {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Contador de interés: no declara compras; solo da sensación de actividad de campaña.
-  if (counterEl) {
-    const storageCounterKey = "kitInterestCounter";
-    let current = Number(localStorage.getItem(storageCounterKey)) || 18;
-    const max = 34;
-    counterEl.textContent = String(current);
+  // V17: contador en vivo. No declara compras; muestra interés en la landing.
+  const liveNumberEl = document.getElementById("kitLiveNumber");
+  if (liveNumberEl) {
+    const storageLiveKey = "kitLiveViewCounter";
+    let current = Number(localStorage.getItem(storageLiveKey)) || 19;
+    const max = 27;
 
-    setInterval(() => {
-      if (current < max && Math.random() > 0.55) {
-        current += 1;
-        counterEl.textContent = String(current);
-        localStorage.setItem(storageCounterKey, String(current));
+    const renderLiveNumber = (value, animate = false) => {
+      liveNumberEl.textContent = String(value);
+      if (animate) {
+        liveNumberEl.classList.add("bump");
+        setTimeout(() => liveNumberEl.classList.remove("bump"), 360);
       }
-    }, 18000);
+    };
+
+    renderLiveNumber(current);
+
+    // Primera subida visible para que la pareja perciba actividad: 19 → 20.
+    setTimeout(() => {
+      if (current < 20) {
+        current = 20;
+        localStorage.setItem(storageLiveKey, String(current));
+        renderLiveNumber(current, true);
+      }
+    }, 7000);
+
+    // Luego sigue subiendo de forma espaciada y sutil durante la sesión.
+    setInterval(() => {
+      if (current < max && Math.random() > 0.62) {
+        current += 1;
+        localStorage.setItem(storageLiveKey, String(current));
+        renderLiveNumber(current, true);
+      }
+    }, 26000);
+  }
+
+  // Compatibilidad con versiones anteriores del contador, si existe en algún bloque.
+  if (counterEl && !document.getElementById("kitLiveNumber")) {
+    let current = 19;
+    counterEl.textContent = String(current);
+    setTimeout(() => {
+      current = 20;
+      counterEl.textContent = String(current);
+    }, 7000);
   }
 })();
