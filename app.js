@@ -44,92 +44,116 @@ if (siteMusic) {
 }
 
 
-// Promo Kit Musical: cuenta regresiva real por sesión + contador visual de interés
+// Promo Kit Musical: countdown personal + actividad en vivo ética
 (function () {
-  const countdownEl = document.getElementById("kitCountdown");
-  const stickyCountdownEl = document.getElementById("kitStickyCountdown");
-  const counterEl = document.getElementById("kitInterestCounter");
+  const countdownEls = document.querySelectorAll('[data-kit-countdown], #kitCountdown, #kitStickyCountdown');
+  const liveNumberEls = document.querySelectorAll('[data-kit-live-number], #kitLiveNumber');
+  const legacyCounterEl = document.getElementById('kitInterestCounter');
+  const activityEl = document.querySelector('[data-kit-activity]');
 
-  if (!countdownEl && !stickyCountdownEl) return;
+  if (!countdownEls.length && !liveNumberEls.length && !legacyCounterEl) return;
 
-  const sixHours = 6 * 60 * 60 * 1000;
-  const storageKey = "kitPromoEndTime";
+  const checkoutUrl = 'https://pay.hotmart.com/W106077396L?checkoutMode=0&bid=1782328955549';
+  const countdownStorageKey = 'kitPromoEndTimeV18';
+  const liveStorageKey = 'kitLiveViewCounterV18';
+  const activityStorageKey = 'kitLiveActivityIndexV18';
 
-  let endTime = Number(localStorage.getItem(storageKey));
+  // Una ventana de urgencia más creíble que 06:00:00: entre 2h15 y 3h29 por visitante.
+  const minDuration = 135 * 60 * 1000;
+  const maxDuration = 209 * 60 * 1000;
 
-  if (!endTime || endTime < Date.now()) {
-    endTime = Date.now() + sixHours;
-    localStorage.setItem(storageKey, String(endTime));
+  let endTime = Number(localStorage.getItem(countdownStorageKey));
+  if (!endTime || endTime <= Date.now()) {
+    const duration = minDuration + Math.floor(Math.random() * (maxDuration - minDuration));
+    endTime = Date.now() + duration;
+    localStorage.setItem(countdownStorageKey, String(endTime));
+  }
+
+  function formatTime(ms) {
+    const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    return (
+      String(hours).padStart(2, '0') + ':' +
+      String(minutes).padStart(2, '0') + ':' +
+      String(seconds).padStart(2, '0')
+    );
   }
 
   function updateCountdown() {
-    const remaining = endTime - Date.now();
-
-    if (remaining <= 0) {
-      if (countdownEl) countdownEl.textContent = "00:00:00";
-      if (stickyCountdownEl) stickyCountdownEl.textContent = "00:00:00";
-      return;
-    }
-
-    const hours = Math.floor(remaining / (1000 * 60 * 60));
-    const minutes = Math.floor((remaining / (1000 * 60)) % 60);
-    const seconds = Math.floor((remaining / 1000) % 60);
-
-    const formatted =
-      String(hours).padStart(2, "0") + ":" +
-      String(minutes).padStart(2, "0") + ":" +
-      String(seconds).padStart(2, "0");
-
-    if (countdownEl) countdownEl.textContent = formatted;
-    if (stickyCountdownEl) stickyCountdownEl.textContent = formatted;
+    const formatted = formatTime(endTime - Date.now());
+    countdownEls.forEach((el) => { el.textContent = formatted; });
   }
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // V17: contador en vivo. No declara compras; muestra interés en la landing.
-  const liveNumberEl = document.getElementById("kitLiveNumber");
-  if (liveNumberEl) {
-    const storageLiveKey = "kitLiveViewCounter";
-    let current = Number(localStorage.getItem(storageLiveKey)) || 19;
-    const max = 27;
+  // Contador de actividad: no afirma compras, comunica interés en la landing.
+  let current = Number(localStorage.getItem(liveStorageKey));
+  if (!current) {
+    current = 24 + Math.floor(Math.random() * 8); // 24–31, creíble para producto boutique.
+    localStorage.setItem(liveStorageKey, String(current));
+  }
 
-    const renderLiveNumber = (value, animate = false) => {
-      liveNumberEl.textContent = String(value);
+  const minLive = 23;
+  const maxLive = 37;
+
+  function renderLiveNumber(value, animate = false) {
+    const targets = liveNumberEls.length ? liveNumberEls : (legacyCounterEl ? [legacyCounterEl] : []);
+    targets.forEach((el) => {
+      el.textContent = String(value);
       if (animate) {
-        liveNumberEl.classList.add("bump");
-        setTimeout(() => liveNumberEl.classList.remove("bump"), 360);
+        el.classList.add('bump');
+        setTimeout(() => el.classList.remove('bump'), 380);
       }
-    };
-
-    renderLiveNumber(current);
-
-    // Primera subida visible para que la pareja perciba actividad: 19 → 20.
-    setTimeout(() => {
-      if (current < 20) {
-        current = 20;
-        localStorage.setItem(storageLiveKey, String(current));
-        renderLiveNumber(current, true);
-      }
-    }, 7000);
-
-    // Luego sigue subiendo de forma espaciada y sutil durante la sesión.
-    setInterval(() => {
-      if (current < max && Math.random() > 0.62) {
-        current += 1;
-        localStorage.setItem(storageLiveKey, String(current));
-        renderLiveNumber(current, true);
-      }
-    }, 26000);
+    });
   }
 
-  // Compatibilidad con versiones anteriores del contador, si existe en algún bloque.
-  if (counterEl && !document.getElementById("kitLiveNumber")) {
-    let current = 19;
-    counterEl.textContent = String(current);
+  renderLiveNumber(current);
+
+  // Primer movimiento visible: sube una unidad para dar sensación de actividad.
+  setTimeout(() => {
+    if (current < maxLive) current += 1;
+    localStorage.setItem(liveStorageKey, String(current));
+    renderLiveNumber(current, true);
+  }, 6500);
+
+  // Luego fluctúa de manera más realista: a veces sube, a veces baja, nunca exagera.
+  function scheduleNextLiveChange() {
+    const delay = 22000 + Math.floor(Math.random() * 26000);
     setTimeout(() => {
-      current = 20;
-      counterEl.textContent = String(current);
-    }, 7000);
+      const shouldGoUp = Math.random() > 0.32;
+      const delta = shouldGoUp ? 1 : -1;
+      current = Math.max(minLive, Math.min(maxLive, current + delta));
+      localStorage.setItem(liveStorageKey, String(current));
+      renderLiveNumber(current, true);
+      scheduleNextLiveChange();
+    }, delay);
   }
+  scheduleNextLiveChange();
+
+  // Microcopy de actividad sin declarar ventas falsas.
+  const activities = [
+    'Último acceso registrado hace 3 minutos.',
+    'Una pareja de Asunción está organizando su playlist.',
+    'Alguien acaba de revisar el test musical.',
+    'Nueva pareja preparando su ceremonia ahora.',
+    'Una novia está revisando los momentos musicales.'
+  ];
+
+  let activityIndex = Number(localStorage.getItem(activityStorageKey)) || 0;
+  function updateActivity() {
+    if (!activityEl) return;
+    activityEl.textContent = activities[activityIndex % activities.length];
+    localStorage.setItem(activityStorageKey, String(activityIndex));
+    activityIndex += 1;
+  }
+
+  updateActivity();
+  if (activityEl) setInterval(updateActivity, 28000);
+
+  // Exponer checkout por si luego se conecta a botones dinámicos.
+  window.kitCheckoutUrl = checkoutUrl;
 })();
