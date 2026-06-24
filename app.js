@@ -42,3 +42,59 @@ if (siteMusic) {
   document.addEventListener('click', tryPlayMusic, { once: true });
   document.addEventListener('touchstart', tryPlayMusic, { once: true });
 }
+
+
+// Promo Kit Musical: cuenta regresiva real por sesión + contador visual de interés
+(function () {
+  const countdownEl = document.getElementById("kitCountdown");
+  const counterEl = document.getElementById("kitInterestCounter");
+
+  if (!countdownEl) return;
+
+  const sixHours = 6 * 60 * 60 * 1000;
+  const storageKey = "kitPromoEndTime";
+
+  let endTime = Number(localStorage.getItem(storageKey));
+
+  if (!endTime || endTime < Date.now()) {
+    endTime = Date.now() + sixHours;
+    localStorage.setItem(storageKey, String(endTime));
+  }
+
+  function updateCountdown() {
+    const remaining = endTime - Date.now();
+
+    if (remaining <= 0) {
+      countdownEl.textContent = "00:00:00";
+      return;
+    }
+
+    const hours = Math.floor(remaining / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining / (1000 * 60)) % 60);
+    const seconds = Math.floor((remaining / 1000) % 60);
+
+    countdownEl.textContent =
+      String(hours).padStart(2, "0") + ":" +
+      String(minutes).padStart(2, "0") + ":" +
+      String(seconds).padStart(2, "0");
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Contador de interés: no declara compras; solo da sensación de actividad de campaña.
+  if (counterEl) {
+    const storageCounterKey = "kitInterestCounter";
+    let current = Number(localStorage.getItem(storageCounterKey)) || 18;
+    const max = 34;
+    counterEl.textContent = String(current);
+
+    setInterval(() => {
+      if (current < max && Math.random() > 0.55) {
+        current += 1;
+        counterEl.textContent = String(current);
+        localStorage.setItem(storageCounterKey, String(current));
+      }
+    }, 18000);
+  }
+})();
