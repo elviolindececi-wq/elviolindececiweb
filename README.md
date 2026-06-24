@@ -39,3 +39,8 @@ Esta versión agrega la sección `#kit-musical` dentro de la home, con CTAs prog
 
 Todos los botones apuntan al checkout:
 https://pay.hotmart.com/W106077396L?checkoutMode=0&bid=1782328955549
+
+
+## v19
+- Corrige la sincronización del contador superior y la barra fija mobile.
+- El script ahora espera a que el DOM esté completo antes de tomar los elementos `data-kit-countdown`.

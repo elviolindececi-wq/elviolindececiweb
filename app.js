@@ -45,7 +45,7 @@ if (siteMusic) {
 
 
 // Promo Kit Musical: countdown personal + actividad en vivo ética
-(function () {
+function initKitPromo() {
   const countdownEls = document.querySelectorAll('[data-kit-countdown], #kitCountdown, #kitStickyCountdown');
   const liveNumberEls = document.querySelectorAll('[data-kit-live-number], #kitLiveNumber');
   const legacyCounterEl = document.getElementById('kitInterestCounter');
@@ -54,13 +54,13 @@ if (siteMusic) {
   if (!countdownEls.length && !liveNumberEls.length && !legacyCounterEl) return;
 
   const checkoutUrl = 'https://pay.hotmart.com/W106077396L?checkoutMode=0&bid=1782328955549';
-  const countdownStorageKey = 'kitPromoEndTimeV18';
-  const liveStorageKey = 'kitLiveViewCounterV18';
-  const activityStorageKey = 'kitLiveActivityIndexV18';
+  const countdownStorageKey = 'kitPromoEndTimeV19';
+  const liveStorageKey = 'kitLiveViewCounterV19';
+  const activityStorageKey = 'kitLiveActivityIndexV19';
 
-  // Una ventana de urgencia más creíble que 06:00:00: entre 2h15 y 3h29 por visitante.
-  const minDuration = 135 * 60 * 1000;
-  const maxDuration = 209 * 60 * 1000;
+  // Ventana promocional personal: menos rígida que 06:00:00 y más creíble.
+  const minDuration = 135 * 60 * 1000; // 2h15
+  const maxDuration = 209 * 60 * 1000; // 3h29
 
   let endTime = Number(localStorage.getItem(countdownStorageKey));
   if (!endTime || endTime <= Date.now()) {
@@ -84,16 +84,18 @@ if (siteMusic) {
 
   function updateCountdown() {
     const formatted = formatTime(endTime - Date.now());
-    countdownEls.forEach((el) => { el.textContent = formatted; });
+    countdownEls.forEach((el) => {
+      el.textContent = formatted;
+    });
   }
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Contador de actividad: no afirma compras, comunica interés en la landing.
+  // Contador de actividad: no afirma compras; comunica interés actual en la landing.
   let current = Number(localStorage.getItem(liveStorageKey));
   if (!current) {
-    current = 24 + Math.floor(Math.random() * 8); // 24–31, creíble para producto boutique.
+    current = 24 + Math.floor(Math.random() * 8); // 24–31
     localStorage.setItem(liveStorageKey, String(current));
   }
 
@@ -101,7 +103,7 @@ if (siteMusic) {
   const maxLive = 37;
 
   function renderLiveNumber(value, animate = false) {
-    const targets = liveNumberEls.length ? liveNumberEls : (legacyCounterEl ? [legacyCounterEl] : []);
+    const targets = liveNumberEls.length ? Array.from(liveNumberEls) : (legacyCounterEl ? [legacyCounterEl] : []);
     targets.forEach((el) => {
       el.textContent = String(value);
       if (animate) {
@@ -113,14 +115,14 @@ if (siteMusic) {
 
   renderLiveNumber(current);
 
-  // Primer movimiento visible: sube una unidad para dar sensación de actividad.
+  // Primer movimiento visible: sube una unidad para que se perciba actividad.
   setTimeout(() => {
     if (current < maxLive) current += 1;
     localStorage.setItem(liveStorageKey, String(current));
     renderLiveNumber(current, true);
   }, 6500);
 
-  // Luego fluctúa de manera más realista: a veces sube, a veces baja, nunca exagera.
+  // Luego fluctúa de manera más realista: a veces sube, a veces baja.
   function scheduleNextLiveChange() {
     const delay = 22000 + Math.floor(Math.random() * 26000);
     setTimeout(() => {
@@ -134,7 +136,6 @@ if (siteMusic) {
   }
   scheduleNextLiveChange();
 
-  // Microcopy de actividad sin declarar ventas falsas.
   const activities = [
     'Último acceso registrado hace 3 minutos.',
     'Una pareja de Asunción está organizando su playlist.',
@@ -154,6 +155,11 @@ if (siteMusic) {
   updateActivity();
   if (activityEl) setInterval(updateActivity, 28000);
 
-  // Exponer checkout por si luego se conecta a botones dinámicos.
   window.kitCheckoutUrl = checkoutUrl;
-})();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initKitPromo);
+} else {
+  initKitPromo();
+}
