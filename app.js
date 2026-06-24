@@ -47,9 +47,10 @@ if (siteMusic) {
 // Promo Kit Musical: cuenta regresiva real por sesión + contador visual de interés
 (function () {
   const countdownEl = document.getElementById("kitCountdown");
+  const stickyCountdownEl = document.getElementById("kitStickyCountdown");
   const counterEl = document.getElementById("kitInterestCounter");
 
-  if (!countdownEl) return;
+  if (!countdownEl && !stickyCountdownEl) return;
 
   const sixHours = 6 * 60 * 60 * 1000;
   const storageKey = "kitPromoEndTime";
@@ -65,7 +66,8 @@ if (siteMusic) {
     const remaining = endTime - Date.now();
 
     if (remaining <= 0) {
-      countdownEl.textContent = "00:00:00";
+      if (countdownEl) countdownEl.textContent = "00:00:00";
+      if (stickyCountdownEl) stickyCountdownEl.textContent = "00:00:00";
       return;
     }
 
@@ -73,10 +75,13 @@ if (siteMusic) {
     const minutes = Math.floor((remaining / (1000 * 60)) % 60);
     const seconds = Math.floor((remaining / 1000) % 60);
 
-    countdownEl.textContent =
+    const formatted =
       String(hours).padStart(2, "0") + ":" +
       String(minutes).padStart(2, "0") + ":" +
       String(seconds).padStart(2, "0");
+
+    if (countdownEl) countdownEl.textContent = formatted;
+    if (stickyCountdownEl) stickyCountdownEl.textContent = formatted;
   }
 
   updateCountdown();
