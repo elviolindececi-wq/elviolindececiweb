@@ -25,6 +25,7 @@
 - `assets/` → SVGs decorativos
 - `test/` → test para novios original
 - `reviews/` → módulo de reseñas original
+<<<<<<< HEAD
 
 
 ## v14 — Kit Musical integrado
@@ -39,3 +40,5 @@ Esta versión agrega la sección `#kit-musical` dentro de la home, con CTAs prog
 
 Todos los botones apuntan al checkout:
 https://pay.hotmart.com/W106077396L?checkoutMode=0&bid=1782328955549
+=======
+>>>>>>> 15148b03ec4a465d02e3bf7a80a246c53551d72f
