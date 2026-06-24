@@ -46,21 +46,24 @@ if (siteMusic) {
 
 // Promo Kit Musical: countdown personal + actividad en vivo ética
 function initKitPromo() {
-  const countdownEls = document.querySelectorAll('[data-kit-countdown], #kitCountdown, #kitStickyCountdown');
-  const liveNumberEls = document.querySelectorAll('[data-kit-live-number], #kitLiveNumber');
-  const legacyCounterEl = document.getElementById('kitInterestCounter');
-  const activityEl = document.querySelector('[data-kit-activity]');
+  const countdownStorageKey = 'kitPromoEndTimeV20';
+  const liveStorageKey = 'kitLiveViewCounterV20';
+  const activityStorageKey = 'kitLiveActivityIndexV20';
 
-  if (!countdownEls.length && !liveNumberEls.length && !legacyCounterEl) return;
+  const getCountdownEls = () => Array.from(document.querySelectorAll('[data-kit-countdown], #kitCountdown, #kitStickyCountdown'));
+  const getLiveNumberEls = () => {
+    const targets = Array.from(document.querySelectorAll('[data-kit-live-number], #kitLiveNumber'));
+    const legacy = document.getElementById('kitInterestCounter');
+    if (legacy && !targets.includes(legacy)) targets.push(legacy);
+    return targets;
+  };
+  const getActivityEls = () => Array.from(document.querySelectorAll('[data-kit-activity]'));
 
-  const checkoutUrl = 'https://pay.hotmart.com/W106077396L?checkoutMode=0&bid=1782328955549';
-  const countdownStorageKey = 'kitPromoEndTimeV19';
-  const liveStorageKey = 'kitLiveViewCounterV19';
-  const activityStorageKey = 'kitLiveActivityIndexV19';
+  if (!getCountdownEls().length && !getLiveNumberEls().length && !getActivityEls().length) return;
 
-  // Ventana promocional personal: menos rígida que 06:00:00 y más creíble.
-  const minDuration = 135 * 60 * 1000; // 2h15
-  const maxDuration = 209 * 60 * 1000; // 3h29
+  // Ventana promocional personal: evita 06:00:00 redondo y se siente más real.
+  const minDuration = 137 * 60 * 1000; // 2h17
+  const maxDuration = 214 * 60 * 1000; // 3h34
 
   let endTime = Number(localStorage.getItem(countdownStorageKey));
   if (!endTime || endTime <= Date.now()) {
@@ -74,59 +77,49 @@ function initKitPromo() {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
-
-    return (
-      String(hours).padStart(2, '0') + ':' +
-      String(minutes).padStart(2, '0') + ':' +
-      String(seconds).padStart(2, '0')
-    );
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   }
 
   function updateCountdown() {
     const formatted = formatTime(endTime - Date.now());
-    countdownEls.forEach((el) => {
-      el.textContent = formatted;
-    });
+    getCountdownEls().forEach((el) => { el.textContent = formatted; });
   }
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Contador de actividad: no afirma compras; comunica interés actual en la landing.
+  // Contador de actividad: NO afirma compras; comunica interés actual en la landing.
+  const minLive = 23;
+  const maxLive = 37;
   let current = Number(localStorage.getItem(liveStorageKey));
-  if (!current) {
-    current = 24 + Math.floor(Math.random() * 8); // 24–31
+  if (!current || current < minLive || current > maxLive) {
+    current = 26 + Math.floor(Math.random() * 5); // 26–30
     localStorage.setItem(liveStorageKey, String(current));
   }
 
-  const minLive = 23;
-  const maxLive = 37;
-
   function renderLiveNumber(value, animate = false) {
-    const targets = liveNumberEls.length ? Array.from(liveNumberEls) : (legacyCounterEl ? [legacyCounterEl] : []);
-    targets.forEach((el) => {
+    getLiveNumberEls().forEach((el) => {
       el.textContent = String(value);
       if (animate) {
         el.classList.add('bump');
-        setTimeout(() => el.classList.remove('bump'), 380);
+        setTimeout(() => el.classList.remove('bump'), 420);
       }
     });
   }
 
   renderLiveNumber(current);
 
-  // Primer movimiento visible: sube una unidad para que se perciba actividad.
+  // Primer movimiento visible: sube una unidad para que la pareja vea actividad.
   setTimeout(() => {
     if (current < maxLive) current += 1;
     localStorage.setItem(liveStorageKey, String(current));
     renderLiveNumber(current, true);
-  }, 6500);
+  }, 6800);
 
-  // Luego fluctúa de manera más realista: a veces sube, a veces baja.
   function scheduleNextLiveChange() {
-    const delay = 22000 + Math.floor(Math.random() * 26000);
+    const delay = 24000 + Math.floor(Math.random() * 32000);
     setTimeout(() => {
-      const shouldGoUp = Math.random() > 0.32;
+      const shouldGoUp = Math.random() > 0.36;
       const delta = shouldGoUp ? 1 : -1;
       current = Math.max(minLive, Math.min(maxLive, current + delta));
       localStorage.setItem(liveStorageKey, String(current));
@@ -137,25 +130,40 @@ function initKitPromo() {
   scheduleNextLiveChange();
 
   const activities = [
-    'Último acceso registrado hace 3 minutos.',
-    'Una pareja de Asunción está organizando su playlist.',
-    'Alguien acaba de revisar el test musical.',
-    'Nueva pareja preparando su ceremonia ahora.',
-    'Una novia está revisando los momentos musicales.'
+    'Una pareja de Asunción comenzó su planificación musical.',
+    'Una pareja de Lima está organizando la música de su ceremonia.',
+    'Una pareja de Ciudad de México está descubriendo el Método Banda Sonora.',
+    'Una pareja de Buenos Aires está armando su playlist.',
+    'Una pareja de Montevideo está preparando la entrada de la novia.',
+    'Una pareja de Santiago está revisando los momentos musicales.',
+    'Una pareja de Bogotá está explorando el kit para su boda.',
+    'Una pareja de Madrid está preparando su banda sonora.',
+    'Una pareja de Encarnación acaba de abrir el test musical.',
+    'Una pareja de Ciudad del Este está revisando su checklist.'
   ];
 
-  let activityIndex = Number(localStorage.getItem(activityStorageKey)) || 0;
-  function updateActivity() {
-    if (!activityEl) return;
-    activityEl.textContent = activities[activityIndex % activities.length];
+  let activityIndex = Number(localStorage.getItem(activityStorageKey));
+  if (!activityIndex || activityIndex < 0) activityIndex = 0;
+
+  function renderActivity(animate = false) {
+    const els = getActivityEls();
+    if (!els.length) return;
+    const message = activities[activityIndex % activities.length];
+    if (animate) els.forEach((el) => el.classList.add('fade-out'));
+    setTimeout(() => {
+      els.forEach((el) => {
+        el.textContent = message;
+        el.classList.remove('fade-out');
+      });
+    }, animate ? 300 : 0);
     localStorage.setItem(activityStorageKey, String(activityIndex));
-    activityIndex += 1;
   }
 
-  updateActivity();
-  if (activityEl) setInterval(updateActivity, 28000);
-
-  window.kitCheckoutUrl = checkoutUrl;
+  renderActivity(false);
+  setInterval(() => {
+    activityIndex += 1;
+    renderActivity(true);
+  }, 9000);
 }
 
 if (document.readyState === 'loading') {
