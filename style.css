@@ -683,3 +683,60 @@ ul{margin:0;padding-left:22px;color:#dbe3ea;line-height:1.9}
   .kit-sticky-mobile span{font-size:.68rem}
   .kit-sticky-mobile a{padding:9px 11px;font-size:.70rem}
 }
+
+
+/* v21 · Ajuste jerarquía tipográfica Kit + precio USD 27 */
+.kit-hero .eyebrow{
+  display:inline-block;
+  margin-bottom:18px;
+  font-size:clamp(1.05rem,1.6vw,1.35rem);
+  font-weight:800;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:#d8bd78;
+}
+
+.kit-hero h2{
+  font-size:clamp(2.8rem,6vw,4.5rem);
+  line-height:.92;
+  letter-spacing:-.035em;
+  max-width:850px;
+  margin:0 0 24px;
+  font-weight:600;
+}
+
+.kit-big-copy{
+  font-size:clamp(1.95rem,3.8vw,3rem);
+  line-height:1.10;
+  font-weight:500;
+  margin-bottom:22px;
+  max-width:900px;
+}
+
+.kit-lead{
+  font-size:clamp(1.85rem,3.65vw,2.95rem);
+  line-height:1.16;
+  max-width:860px;
+  color:rgba(255,255,255,.92);
+}
+
+@media (max-width:760px){
+  .kit-hero .eyebrow{
+    font-size:.92rem;
+    letter-spacing:.24em;
+    margin-bottom:14px;
+  }
+  .kit-hero h2{
+    font-size:clamp(2.6rem,12vw,3.75rem);
+    line-height:.9;
+    margin-bottom:18px;
+  }
+  .kit-big-copy{
+    font-size:clamp(1.7rem,8vw,2.3rem);
+    line-height:1.08;
+  }
+  .kit-lead{
+    font-size:clamp(1.6rem,7.4vw,2.15rem);
+    line-height:1.13;
+  }
+}
