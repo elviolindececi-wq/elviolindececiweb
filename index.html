@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W8CTKLR2');</script>
+<!-- End Google Tag Manager -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -58,6 +65,10 @@
 
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8CTKLR2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <audio id="siteMusic" src="./test/audio/experience.mp3" preload="auto" autoplay loop></audio>
   <header class="header" id="top">
     <div class="container nav">
@@ -517,18 +528,45 @@
 
           link.href = hotmartUrl.toString();
 
-          link.addEventListener("click", function () {
+          let alreadyTracked = false;
+
+          function trackHotmartClick() {
+            if (alreadyTracked) return;
+            alreadyTracked = true;
+            setTimeout(function () {
+              alreadyTracked = false;
+            }, 1500);
+
+            const eventData = {
+              event: "click_hotmart_checkout",
+              funnel: "kit_musical_novias",
+              canal: currentParams.get("utm_medium") || "sin_utm_medium",
+              utm_source: currentParams.get("utm_source") || "sin_utm_source",
+              utm_medium: currentParams.get("utm_medium") || "sin_utm_medium",
+              utm_campaign: currentParams.get("utm_campaign") || "sin_utm_campaign",
+              utm_content: currentParams.get("utm_content") || "sin_utm_content",
+              sck: currentParams.get("sck") || "sin_sck",
+              hotmart_cta: ctaName
+            };
+
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(eventData);
+
             if (window.clarity) {
               window.clarity("event", "click_hotmart_checkout");
-              window.clarity("set", "funnel", "kit_musical_novias");
-              window.clarity("set", "canal", currentParams.get("utm_medium") || "sin_utm_medium");
-              window.clarity("set", "utm_source", currentParams.get("utm_source") || "sin_utm_source");
-              window.clarity("set", "utm_campaign", currentParams.get("utm_campaign") || "sin_utm_campaign");
-              window.clarity("set", "utm_content", currentParams.get("utm_content") || "sin_utm_content");
-              window.clarity("set", "sck", currentParams.get("sck") || "sin_sck");
-              window.clarity("set", "hotmart_cta", ctaName);
+              window.clarity("set", "funnel", eventData.funnel);
+              window.clarity("set", "canal", eventData.canal);
+              window.clarity("set", "utm_source", eventData.utm_source);
+              window.clarity("set", "utm_medium", eventData.utm_medium);
+              window.clarity("set", "utm_campaign", eventData.utm_campaign);
+              window.clarity("set", "utm_content", eventData.utm_content);
+              window.clarity("set", "sck", eventData.sck);
+              window.clarity("set", "hotmart_cta", eventData.hotmart_cta);
             }
-          });
+          }
+
+          link.addEventListener("pointerdown", trackHotmartClick);
+          link.addEventListener("click", trackHotmartClick);
         });
     });
   </script>
