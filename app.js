@@ -171,3 +171,14 @@ if (document.readyState === 'loading') {
 } else {
   initKitPromo();
 }
+
+// v25: cerrar barra inferior del Sistema Banda Sonora
+(function(){
+  const sticky = document.querySelector('.kit-v25-sticky');
+  const close = document.querySelector('.kit-v25-sticky-close');
+  if(!sticky || !close) return;
+  close.addEventListener('click', () => {
+    sticky.style.display = 'none';
+    document.body.style.paddingBottom = '0px';
+  });
+})();
