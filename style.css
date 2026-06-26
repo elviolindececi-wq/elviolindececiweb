@@ -685,58 +685,242 @@ ul{margin:0;padding-left:22px;color:#dbe3ea;line-height:1.9}
 }
 
 
-/* v21 · Ajuste jerarquía tipográfica Kit + precio USD 27 */
-.kit-hero .eyebrow{
-  display:inline-block;
-  margin-bottom:18px;
-  font-size:clamp(1.05rem,1.6vw,1.35rem);
-  font-weight:800;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  color:#d8bd78;
-}
+/* v22 · Kit Musical compacto, honesto y mobile-first */
+.kit-sticky-mobile{display:none !important;}
+body{padding-bottom:0 !important;}
 
-.kit-hero h2{
-  font-size:clamp(2.8rem,6vw,4.5rem);
-  line-height:.92;
-  letter-spacing:-.035em;
+.kit-musical-compact{
+  background:linear-gradient(180deg, rgba(5,15,26,.97), rgba(8,24,40,.98));
+  border-top:1px solid rgba(240,210,162,.08);
+  border-bottom:1px solid rgba(240,210,162,.08);
+}
+.kit-product{max-width:980px;}
+.kit-hero-compact{
+  padding:18px 0 30px;
   max-width:850px;
-  margin:0 0 24px;
-  font-weight:600;
 }
-
-.kit-big-copy{
-  font-size:clamp(1.95rem,3.8vw,3rem);
-  line-height:1.10;
-  font-weight:500;
-  margin-bottom:22px;
-  max-width:900px;
+.kit-eyebrow{
+  display:inline-block;
+  margin:0 0 12px;
+  font-size:clamp(.92rem,2.8vw,1.18rem);
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  font-weight:900;
 }
+.kit-hero-compact h2{
+  font-family:"Cormorant Garamond", Georgia, serif;
+  font-size:clamp(2.65rem,8.6vw,5.1rem);
+  line-height:.90;
+  letter-spacing:-.04em;
+  margin:0 0 14px;
+  max-width:720px;
+  color:#fff;
+}
+.kit-subtitle{
+  font-size:clamp(1.05rem,3.4vw,1.45rem);
+  line-height:1.42;
+  max-width:760px;
+  margin:0 0 16px;
+  color:rgba(255,255,255,.86);
+}
+.kit-quick-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 18px;
+}
+.kit-quick-row span{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(240,210,162,.14);
+  color:rgba(255,255,255,.82);
+  font-size:.80rem;
+  line-height:1.1;
+}
+.kit-hero-actions{
+  display:grid;
+  gap:10px;
+  max-width:520px;
+}
+.kit-hero-actions p{
+  margin:0;
+  font-size:.94rem;
+  line-height:1.45;
+  color:rgba(255,255,255,.76);
+}
+.kit-btn{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(135deg,#f7e7a9 0%,#d8bd78 32%,#b98935 58%,#fff0b8 100%);
+  color:#071624;
+  border:1px solid rgba(255,239,184,.45);
+  box-shadow:0 18px 42px rgba(216,189,120,.22), inset 0 1px 0 rgba(255,255,255,.55);
+  text-transform:none;
+  font-weight:900;
+  letter-spacing:.01em;
+}
+.kit-btn::before{
+  content:"";
+  position:absolute;
+  top:-55%;
+  bottom:-55%;
+  left:-75%;
+  width:54%;
+  transform:skewX(-22deg);
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.62), transparent);
+  animation:goldShine 5.2s ease-in-out infinite;
+  z-index:-1;
+}
+.kit-btn:hover{transform:translateY(-2px);box-shadow:0 24px 54px rgba(216,189,120,.32), inset 0 1px 0 rgba(255,255,255,.65);}
 
-.kit-lead{
-  font-size:clamp(1.85rem,3.65vw,2.95rem);
-  line-height:1.16;
-  max-width:860px;
-  color:rgba(255,255,255,.92);
+.kit-authority{
+  margin:4px 0 26px;
+  padding:18px 20px;
+  border-radius:20px;
+  border:1px solid rgba(240,210,162,.14);
+  background:rgba(255,255,255,.04);
+}
+.kit-authority p{
+  margin:0;
+  font-size:1rem;
+  line-height:1.62;
+  color:rgba(255,255,255,.82);
+}
+.kit-authority strong{color:#fff;}
+
+.kit-block{
+  padding:28px 0;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.kit-block-heading{max-width:720px;margin-bottom:18px;}
+.kit-block h3,
+.kit-price-card h3{
+  font-family:"Cormorant Garamond", Georgia, serif;
+  color:#fff;
+  font-size:clamp(1.9rem,5.4vw,3.2rem);
+  line-height:1;
+  letter-spacing:-.035em;
+  margin:0 0 12px;
+}
+.kit-mini-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.kit-mini-grid article{
+  padding:18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(240,210,162,.10);
+}
+.kit-mini-grid span{
+  display:inline-flex;
+  margin-bottom:8px;
+  font-size:.78rem;
+  letter-spacing:.14em;
+  font-weight:900;
+  color:var(--gold-light);
+}
+.kit-mini-grid h4{
+  margin:0 0 8px;
+  font-size:1rem;
+  line-height:1.25;
+  color:#fff;
+  font-family:Inter,system-ui,sans-serif;
+}
+.kit-mini-grid p,
+.kit-why p{
+  margin:0;
+  font-size:.94rem;
+  line-height:1.6;
+  color:rgba(255,255,255,.78);
+}
+.kit-why{max-width:760px;}
+.kit-testimonial-list{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.kit-testimonial-list blockquote{
+  margin:0;
+  padding:18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(240,210,162,.10);
+  font-family:"Cormorant Garamond", Georgia, serif;
+  font-style:italic;
+  font-size:1.2rem;
+  line-height:1.2;
+  color:#fff;
+}
+.kit-price-card{
+  margin:28px 0 14px;
+  padding:24px;
+  border-radius:24px;
+  border:1px solid rgba(216,189,120,.30);
+  background:radial-gradient(circle at top left, rgba(216,189,120,.12), transparent 38%), rgba(255,255,255,.045);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  box-shadow:0 22px 55px rgba(0,0,0,.24);
+}
+.kit-price-card h3{font-size:clamp(2.5rem,7vw,4.5rem);color:var(--gold-light);margin-bottom:6px;}
+.kit-price-card p{margin:0;color:rgba(255,255,255,.80);line-height:1.5;}
+.kit-price-card .btn{flex:0 0 auto;}
+.kit-guarantee{
+  margin:0 0 26px;
+  padding:16px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.08);
+  display:grid;
+  gap:4px;
+}
+.kit-guarantee strong{color:#fff;}
+.kit-guarantee span{color:rgba(255,255,255,.76);line-height:1.55;}
+.kit-faq-compact{
+  padding:28px 0 8px;
+  border-top:1px solid rgba(255,255,255,.07);
+  display:grid;
+  gap:10px;
+}
+.kit-faq-compact details{
+  border:1px solid rgba(240,210,162,.10);
+  background:rgba(255,255,255,.035);
+  border-radius:16px;
+  overflow:hidden;
+}
+.kit-faq-compact summary{
+  cursor:pointer;
+  padding:15px 16px;
+  color:#fff;
+  font-weight:800;
+  list-style:none;
+}
+.kit-faq-compact summary::-webkit-details-marker{display:none;}
+.kit-faq-compact p{
+  margin:0;
+  padding:0 16px 16px;
+  font-size:.94rem;
+  line-height:1.55;
+  color:rgba(255,255,255,.76);
 }
 
 @media (max-width:760px){
-  .kit-hero .eyebrow{
-    font-size:.92rem;
-    letter-spacing:.24em;
-    margin-bottom:14px;
-  }
-  .kit-hero h2{
-    font-size:clamp(2.6rem,12vw,3.75rem);
-    line-height:.9;
-    margin-bottom:18px;
-  }
-  .kit-big-copy{
-    font-size:clamp(1.7rem,8vw,2.3rem);
-    line-height:1.08;
-  }
-  .kit-lead{
-    font-size:clamp(1.6rem,7.4vw,2.15rem);
-    line-height:1.13;
-  }
+  .kit-musical-compact{padding-top:58px;}
+  .kit-hero-compact{padding-top:0;padding-bottom:22px;}
+  .kit-eyebrow{font-size:1rem;letter-spacing:.24em;margin-bottom:10px;}
+  .kit-hero-compact h2{font-size:clamp(2.35rem,11vw,3.25rem);max-width:10ch;margin-bottom:12px;}
+  .kit-subtitle{font-size:1.03rem;line-height:1.38;margin-bottom:13px;}
+  .kit-quick-row span{font-size:.75rem;padding:7px 9px;}
+  .kit-mini-grid,.kit-testimonial-list{grid-template-columns:1fr;}
+  .kit-block{padding:24px 0;}
+  .kit-price-card{display:grid;padding:20px;border-radius:20px;}
+  .kit-price-card .btn{width:100%;}
+  .kit-testimonial-list blockquote{font-size:1.12rem;}
 }
