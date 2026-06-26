@@ -924,3 +924,93 @@ body{padding-bottom:0 !important;}
   .kit-price-card .btn{width:100%;}
   .kit-testimonial-list blockquote{font-size:1.12rem;}
 }
+
+
+/* v23 · Sistema Banda Sonora: landing limpia y compacta */
+.sistema-banda-sonora{
+  margin:72px 0;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(216,189,120,.12), transparent 30%),
+    linear-gradient(180deg, rgba(5,15,26,.98), rgba(8,24,40,.99));
+  border-top:1px solid rgba(240,210,162,.14);
+  border-bottom:1px solid rgba(240,210,162,.14);
+}
+.sistema-banda-sonora .kit-hero-compact{
+  padding:12px 0 26px;
+  max-width:900px;
+}
+.sistema-banda-sonora .kit-eyebrow{
+  font-size:clamp(1rem,2.6vw,1.22rem);
+  letter-spacing:.30em;
+  margin-bottom:12px;
+}
+.sistema-banda-sonora .kit-hero-compact h2{
+  font-size:clamp(2.45rem,6.2vw,4.65rem);
+  line-height:.94;
+  letter-spacing:-.035em;
+  max-width:760px;
+  margin-bottom:12px;
+}
+.sistema-banda-sonora .kit-subtitle{
+  font-size:clamp(1.02rem,2.6vw,1.28rem);
+  line-height:1.42;
+  max-width:720px;
+  margin-bottom:14px;
+}
+.kit-includes-inline{
+  margin:0 0 18px;
+  max-width:760px;
+}
+.kit-includes-inline .eyebrow{
+  margin:0 0 8px;
+  font-size:.68rem;
+  letter-spacing:.18em;
+  color:var(--gold-light);
+}
+.kit-includes-inline .kit-quick-row{
+  margin:0;
+  gap:7px;
+}
+.kit-includes-inline .kit-quick-row span{
+  padding:6px 9px;
+  font-size:.74rem;
+  line-height:1.1;
+  background:rgba(255,255,255,.035);
+}
+.sistema-banda-sonora .kit-hero-actions{
+  max-width:460px;
+}
+.sistema-banda-sonora .kit-btn{
+  text-transform:none;
+}
+@media (max-width:760px){
+  .sistema-banda-sonora{
+    margin:44px 0;
+    padding-top:48px;
+  }
+  .sistema-banda-sonora .kit-hero-compact h2{
+    font-size:clamp(2.25rem,10.2vw,3.05rem);
+    line-height:.94;
+    max-width:13.2ch;
+    margin-bottom:10px;
+  }
+  .sistema-banda-sonora .kit-subtitle{
+    font-size:.98rem;
+    line-height:1.36;
+    margin-bottom:12px;
+  }
+  .kit-includes-inline .kit-quick-row{
+    display:flex;
+    gap:6px;
+  }
+  .kit-includes-inline .kit-quick-row span{
+    font-size:.68rem;
+    padding:6px 8px;
+  }
+  .sistema-banda-sonora .kit-hero-actions{
+    gap:8px;
+  }
+  .sistema-banda-sonora .kit-hero-actions p{
+    font-size:.86rem;
+  }
+}
