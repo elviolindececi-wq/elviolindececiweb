@@ -1803,3 +1803,242 @@ ul{margin:0;padding-left:22px;color:#dbe3ea;line-height:1.9}
     font-size:.70rem!important;
   }
 }
+
+
+/* v27 · Correcciones finas UI: iconos, autoridad y sticky */
+.kit-v25-include-card{
+  max-width: 980px;
+}
+.kit-v25-icons{
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(10px, 2.4vw, 34px);
+}
+.kit-v25-icons article{
+  min-width: 0;
+  gap: 10px;
+}
+.kit-v25-icons svg{
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  overflow: visible;
+  stroke-width: 2.1 !important;
+}
+.kit-v25-icons .icon-music,
+.kit-v25-icons .icon-brain{
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  max-width: 50px !important;
+}
+.kit-v25-icons h3{
+  max-width: 88px;
+  font-size: .78rem;
+  line-height: 1.12;
+  font-weight: 460;
+  letter-spacing: -.02em;
+  color: rgba(255,255,255,.82);
+}
+
+.kit-v25-trust-card{
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 138px;
+  align-items: center;
+  padding: 26px 30px;
+}
+.kit-v25-trust-left{
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+}
+.kit-v25-trust-left img{
+  width: 74px !important;
+  height: 74px !important;
+  min-width: 74px !important;
+  border-radius: 50% !important;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.kit-v25-stars{
+  font-size: 1.15rem;
+  letter-spacing: .10em;
+  margin-bottom: 7px;
+}
+.kit-v25-trust-card p{
+  max-width: 560px;
+  font-size: 1.05rem;
+  line-height: 1.34;
+}
+.kit-v25-laurel{
+  width: 126px;
+  min-height: 126px;
+  flex-basis: 126px;
+  padding: 14px;
+}
+.kit-v25-laurel span{
+  font-size: .58rem;
+  letter-spacing: .12em;
+}
+.kit-v25-laurel strong{
+  font-size: 2.65rem;
+}
+
+.kit-v25-sticky{
+  width: min(560px, calc(100% - 32px));
+  min-height: 84px;
+  padding: 14px 16px;
+  border-radius: 22px;
+  gap: 12px;
+}
+.kit-v25-sticky > div{
+  padding-right: 22px;
+}
+.kit-v25-sticky strong{
+  font-size: .92rem !important;
+}
+.kit-v25-sticky span{
+  font-size: .72rem !important;
+}
+.kit-v25-sticky a{
+  min-width: 96px !important;
+  padding: 11px 14px !important;
+  border-radius: 14px !important;
+  font-size: .72rem !important;
+  letter-spacing: .01em;
+}
+.kit-v25-sticky-close{
+  right: 12px;
+  top: 8px;
+  width: 22px;
+  height: 22px;
+  font-size: 1.25rem;
+  opacity: .78;
+}
+
+@media (max-width: 760px){
+  .kit-v25-include-card{
+    padding: 24px 12px 26px;
+    border-radius: 24px;
+  }
+  .kit-v25-card-title{
+    font-size: .70rem;
+    letter-spacing: .28em;
+    margin-bottom: 22px;
+  }
+  .kit-v25-icons{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .kit-v25-icons svg,
+  .kit-v25-icons .icon-music,
+  .kit-v25-icons .icon-brain{
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    max-width: 28px !important;
+    stroke-width: 1.9 !important;
+  }
+  .kit-v25-icons h3{
+    max-width: 54px;
+    font-size: .55rem;
+    line-height: 1.08;
+    font-weight: 450;
+  }
+
+  .kit-v25-trust-card{
+    grid-template-columns: minmax(0,1fr) 82px;
+    gap: 12px;
+    padding: 18px 16px;
+    border-radius: 24px;
+    align-items: center;
+  }
+  .kit-v25-trust-left{
+    grid-template-columns: 56px minmax(0,1fr);
+    gap: 12px;
+  }
+  .kit-v25-trust-left img{
+    width: 54px !important;
+    height: 54px !important;
+    min-width: 54px !important;
+    border-width: 2px;
+  }
+  .kit-v25-stars{
+    font-size: .82rem;
+    letter-spacing: .08em;
+    margin-bottom: 5px;
+  }
+  .kit-v25-trust-card p{
+    font-size: .80rem;
+    line-height: 1.32;
+  }
+  .kit-v25-laurel{
+    width: 78px;
+    min-height: 78px;
+    padding: 8px;
+    justify-self: end;
+  }
+  .kit-v25-laurel span{
+    font-size: .40rem;
+    letter-spacing: .10em;
+  }
+  .kit-v25-laurel strong{
+    font-size: 1.62rem;
+    margin: 1px 0;
+  }
+
+  .kit-v25-sticky{
+    width: auto !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    min-height: 78px;
+    padding: 12px 12px;
+    border-radius: 20px;
+  }
+  .kit-v25-sticky strong{
+    font-size: .82rem !important;
+  }
+  .kit-v25-sticky span{
+    font-size: .66rem !important;
+    line-height: 1.18;
+  }
+  .kit-v25-sticky a{
+    min-width: 86px !important;
+    padding: 10px 11px !important;
+    font-size: .66rem !important;
+  }
+  .kit-v25-sticky-close{
+    right: 9px;
+    top: 7px;
+    font-size: 1.1rem;
+  }
+  body{padding-bottom: 96px;}
+}
+
+@media (max-width: 380px){
+  .kit-v25-icons svg,
+  .kit-v25-icons .icon-music,
+  .kit-v25-icons .icon-brain{
+    width: 25px !important;
+    height: 25px !important;
+    min-width: 25px !important;
+    max-width: 25px !important;
+  }
+  .kit-v25-icons h3{
+    font-size: .50rem;
+    max-width: 48px;
+  }
+  .kit-v25-trust-card{
+    grid-template-columns: minmax(0,1fr) 74px;
+    padding: 16px 14px;
+  }
+  .kit-v25-laurel{
+    width: 70px;
+    min-height: 70px;
+  }
+  .kit-v25-laurel strong{font-size: 1.45rem;}
+}
