@@ -1481,3 +1481,325 @@ ul{margin:0;padding-left:22px;color:#dbe3ea;line-height:1.9}
   .kit-v25-include-card{padding-left:12px;padding-right:12px}
   .kit-v25-sticky{padding-left:14px;left:8px;right:8px}
 }
+
+
+/* v26 · UI polish: iconos, autoridad y barra inferior Sistema Banda Sonora */
+.kit-v25-include-card{
+  overflow:hidden;
+}
+
+.kit-v25-icons{
+  align-items:start;
+}
+
+.kit-v25-icons article{
+  min-width:0;
+  gap:12px;
+}
+
+.kit-v25-icons svg{
+  width:56px;
+  height:56px;
+  min-width:56px;
+  max-width:56px;
+  aspect-ratio:1 / 1;
+  display:block;
+  margin:0 auto;
+  stroke:#d8bd78;
+  stroke-width:2.15;
+  fill:none;
+  flex:0 0 auto;
+  transform:none;
+}
+
+.kit-v25-icons svg *,
+.kit-v25-icons svg path{
+  vector-effect:non-scaling-stroke;
+}
+
+.kit-v25-icons h3{
+  max-width:92px;
+  margin:0 auto;
+  font-family:Inter, system-ui, sans-serif;
+  font-size:.86rem;
+  line-height:1.18;
+  font-weight:520;
+  letter-spacing:-.025em;
+  color:rgba(255,255,255,.88);
+}
+
+.kit-v25-icons article:hover svg{
+  transform:translateY(-3px);
+}
+
+/* Tarjeta de autoridad más limpia */
+.kit-v25-trust-card{
+  border-radius:30px;
+  padding:28px 30px;
+  gap:26px;
+}
+
+.kit-v25-trust-left img{
+  width:86px;
+  height:86px;
+  min-width:86px;
+  aspect-ratio:1 / 1;
+  border-radius:999px;
+  object-fit:cover;
+  object-position:center 30%;
+  border:3px solid rgba(216,189,120,.9);
+  box-shadow:0 12px 30px rgba(0,0,0,.34), 0 0 0 5px rgba(216,189,120,.08);
+}
+
+.kit-v25-laurel{
+  flex:0 0 154px;
+  width:154px;
+  min-height:154px;
+  border:1.5px solid rgba(216,189,120,.78);
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(216,189,120,.14), transparent 58%),
+    rgba(216,189,120,.04);
+  box-shadow:inset 0 0 30px rgba(216,189,120,.07);
+  padding:18px;
+}
+
+.kit-v25-laurel::before,
+.kit-v25-laurel::after{
+  display:none;
+}
+
+.kit-v25-laurel span{
+  font-size:.7rem;
+  line-height:1.05;
+  letter-spacing:.12em;
+}
+
+.kit-v25-laurel strong{
+  font-size:3.15rem;
+  line-height:.86;
+  margin:4px 0;
+}
+
+/* Barra inferior rediseñada */
+.kit-v25-sticky{
+  left:50%;
+  right:auto;
+  bottom:18px;
+  width:min(720px, calc(100% - 28px));
+  transform:translateX(-50%);
+  min-height:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:16px 18px;
+  border-radius:24px;
+  background:
+    linear-gradient(180deg, rgba(8,26,43,.97), rgba(4,16,29,.98));
+  border:1px solid rgba(216,189,120,.52);
+  box-shadow:0 22px 70px rgba(0,0,0,.46), inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.kit-v25-sticky > div{
+  min-width:0;
+  padding-right:34px;
+}
+
+.kit-v25-sticky strong{
+  font-family:Inter, system-ui, sans-serif!important;
+  font-size:1rem!important;
+  font-weight:760!important;
+  letter-spacing:-.02em;
+}
+
+.kit-v25-sticky span{
+  font-size:.78rem!important;
+  color:rgba(255,255,255,.72)!important;
+}
+
+.kit-v25-sticky a{
+  position:relative!important;
+  right:auto!important;
+  bottom:auto!important;
+  min-width:112px!important;
+  padding:12px 18px!important;
+  border-radius:16px!important;
+  font-size:.82rem!important;
+  font-weight:850!important;
+  box-shadow:0 12px 28px rgba(216,189,120,.22), inset 0 1px 0 rgba(255,255,255,.45);
+}
+
+.kit-v25-sticky-close{
+  right:14px;
+  top:10px;
+  width:24px;
+  height:24px;
+  font-size:1.55rem;
+  color:rgba(255,255,255,.72);
+}
+
+/* Ajustes mobile finos */
+@media (max-width:760px){
+  .kit-v25-include-card{
+    padding:28px 14px 30px;
+    border-radius:26px;
+  }
+
+  .kit-v25-card-title{
+    font-size:.76rem;
+    letter-spacing:.30em;
+    margin-bottom:24px;
+  }
+
+  .kit-v25-icons{
+    grid-template-columns:repeat(5, minmax(0, 1fr));
+    gap:8px;
+  }
+
+  .kit-v25-icons article{
+    gap:9px;
+  }
+
+  .kit-v25-icons svg{
+    width:34px;
+    height:34px;
+    min-width:34px;
+    max-width:34px;
+    stroke-width:2;
+  }
+
+  .kit-v25-icons h3{
+    max-width:62px;
+    font-size:.63rem;
+    line-height:1.12;
+    font-weight:500;
+    letter-spacing:-.035em;
+  }
+
+  .kit-v25-trust-card{
+    grid-template-columns:1fr;
+    display:grid;
+    padding:20px;
+    gap:18px;
+    border-radius:26px;
+  }
+
+  .kit-v25-trust-left{
+    display:grid;
+    grid-template-columns:68px 1fr;
+    align-items:center;
+    gap:14px;
+  }
+
+  .kit-v25-trust-left img{
+    width:66px;
+    height:66px;
+    min-width:66px;
+    border-width:2px;
+    box-shadow:0 10px 22px rgba(0,0,0,.28), 0 0 0 4px rgba(216,189,120,.08);
+  }
+
+  .kit-v25-stars{
+    font-size:1.02rem;
+    letter-spacing:.10em;
+    margin-bottom:5px;
+  }
+
+  .kit-v25-trust-card p{
+    font-size:.93rem;
+    line-height:1.34;
+  }
+
+  .kit-v25-laurel{
+    justify-self:center;
+    width:112px;
+    min-height:112px;
+    flex-basis:auto;
+    padding:14px;
+  }
+
+  .kit-v25-laurel span{
+    font-size:.55rem;
+    letter-spacing:.10em;
+  }
+
+  .kit-v25-laurel strong{
+    font-size:2.25rem;
+    margin:3px 0;
+  }
+
+  .kit-v25-sticky{
+    display:flex!important;
+    left:12px!important;
+    right:12px!important;
+    bottom:10px!important;
+    width:auto!important;
+    transform:none!important;
+    padding:14px 14px;
+    border-radius:22px;
+    gap:12px;
+  }
+
+  .kit-v25-sticky > div{
+    padding-right:26px;
+  }
+
+  .kit-v25-sticky strong{
+    font-size:.94rem!important;
+  }
+
+  .kit-v25-sticky span{
+    font-size:.72rem!important;
+    line-height:1.22;
+  }
+
+  .kit-v25-sticky a{
+    min-width:96px!important;
+    padding:11px 14px!important;
+    font-size:.74rem!important;
+    border-radius:14px!important;
+  }
+
+  .kit-v25-sticky-close{
+    right:10px;
+    top:8px;
+    width:22px;
+    height:22px;
+    font-size:1.35rem;
+  }
+
+  body{
+    padding-bottom:104px;
+  }
+}
+
+@media (max-width:390px){
+  .kit-v25-icons{
+    gap:5px;
+  }
+
+  .kit-v25-icons svg{
+    width:30px;
+    height:30px;
+    min-width:30px;
+    max-width:30px;
+  }
+
+  .kit-v25-icons h3{
+    font-size:.58rem;
+    max-width:56px;
+  }
+
+  .kit-v25-sticky{
+    left:8px!important;
+    right:8px!important;
+    padding:12px 12px;
+  }
+
+  .kit-v25-sticky a{
+    min-width:88px!important;
+    padding:10px 12px!important;
+    font-size:.70rem!important;
+  }
+}
