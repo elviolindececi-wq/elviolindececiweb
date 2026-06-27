@@ -43,21 +43,11 @@ if (siteMusic) {
   document.addEventListener('touchstart', tryPlayMusic, { once: true });
 }
 
-// Cerrar barra inferior del Sistema Banda Sonora
+// Barra inferior del Sistema Banda Sonora siempre visible
 (function () {
-  const sticky = document.querySelector('.kit-v25-sticky, .kit-v32-sticky');
-  const close = document.querySelector('.kit-v25-sticky-close');
-
-  if (!sticky || !close) return;
-
-  close.addEventListener('click', () => {
-    sticky.style.display = 'none';
-    document.body.style.paddingBottom = '0px';
-
-    if (typeof window.clarity === 'function') {
-      window.clarity('event', 'cerrar_sticky_sistema');
-    }
-  });
+  const sticky = document.querySelector('.kit-v32-sticky');
+  if (!sticky) return;
+  sticky.classList.add('is-visible');
 })();
 
 // Medición de clics hacia Hotmart en Microsoft Clarity
@@ -76,19 +66,10 @@ if (siteMusic) {
 })();
 
 
-// Mostrar la barra sticky del Sistema recién después de que la persona vio parte de la landing
+// Mantener visible la barra sticky del Sistema durante toda la experiencia
 (function () {
   const sticky = document.querySelector('.kit-v32-sticky');
-  const kitSection = document.getElementById('kit-musical');
-  if (!sticky || !kitSection) return;
-
-  const updateSticky = () => {
-    const kitTop = kitSection.getBoundingClientRect().top + window.scrollY;
-    const shouldShow = window.innerWidth <= 760 && window.scrollY > kitTop + 650;
-    sticky.classList.toggle('is-visible', shouldShow);
-  };
-
-  updateSticky();
-  window.addEventListener('scroll', updateSticky, { passive: true });
-  window.addEventListener('resize', updateSticky);
+  if (!sticky) return;
+  sticky.classList.add('is-visible');
 })();
+

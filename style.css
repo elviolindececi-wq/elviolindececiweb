@@ -2211,3 +2211,41 @@ ul{margin:0;padding-left:22px;color:#dbe3ea;line-height:1.9}
   .kit-v32-icons h4{font-size:.76rem;}
   .kit-v32-icons p{font-size:.66rem;}
 }
+
+
+/* v33 · CTA después de inclusión + popup siempre visible */
+.kit-v32-include-cta{
+  margin:24px auto 0;
+  padding-top:22px;
+  border-top:1px solid rgba(216,189,120,.16);
+  display:grid;
+  justify-items:center;
+  gap:14px;
+}
+.kit-v32-include-cta p{
+  margin:0;
+  color:rgba(255,255,255,.76);
+  font-size:.92rem;
+  line-height:1.45;
+  text-align:center;
+}
+.kit-v32-include-cta .kit-v32-main-btn{
+  width:min(520px,100%);
+}
+.kit-v32-sticky,
+.kit-v32-sticky.is-visible{
+  opacity:1!important;
+  pointer-events:auto!important;
+  transform:translate(-50%,0)!important;
+  display:flex!important;
+}
+.kit-v25-sticky-close{display:none!important;}
+@media (max-width:760px){
+  .kit-v32-sticky,
+  .kit-v32-sticky.is-visible{
+    transform:translateY(0)!important;
+    display:flex!important;
+  }
+  .kit-v32-include-cta{margin-top:18px;padding-top:18px;}
+  .kit-v32-include-cta p{font-size:.82rem;}
+}
