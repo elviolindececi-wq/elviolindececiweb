@@ -11,6 +11,7 @@ const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyIEcKAHlnfrI9Ktb8q
 const WHATSAPP_BASE = "https://wa.me/595985689454";
 const INSTAGRAM_URL = "https://www.instagram.com/elviolindececi/";
 const CALENDLY_URL = "https://calendly.com/elviolindececi/30min";
+const HOTMART_PRODUCT_URL = "https://hotmart.com/es/marketplace/productos/la-banda-sonora-de-tu-boda/W106077396L";
 const AUDIO_BY_ARCHETYPE = {
 
   A: { file: "audio/canon-in-d.mp3", label: "Canon in D — Pachelbel" },
@@ -590,7 +591,7 @@ leadForm?.addEventListener("submit", async (e) => {
   locked = true;
   if (btnShowResults){
     btnShowResults.disabled = true;
-    btnShowResults.textContent = "Generando…";
+    btnShowResults.textContent = "Preparando acceso…";
   }
 
   const computed = computeArchetype(answers);
@@ -603,10 +604,7 @@ leadForm?.addEventListener("submit", async (e) => {
 
   const payload = buildFinalPayload(basePayload, computed, intensity, pr, indice);
 
-  renderResult(payload, computed, intensity, pr.prioridad, indice);
-  show("#screen-result");
-
-  // ✅ GA4: completó el test (llegó a resultado)
+  // ✅ GA4: completó el test y avanza al producto
   gaEvent("quiz_completed", {
     lead_id,
     arquetipo_primary: computed.primary,
@@ -621,17 +619,20 @@ leadForm?.addEventListener("submit", async (e) => {
       await enviarLeadASheets(payload);
     } catch(err){
       console.error("Error guardando lead:", err);
-      alert("Tus resultados están listos ✅ pero hubo un problema guardando tus datos. Escribinos por WhatsApp y lo resolvemos rápido 🙌");
+      // No frenamos el flujo: la prioridad es que la pareja llegue al producto.
     } finally{
       sending = false;
     }
   }
 
-  locked = false;
-  if (btnShowResults){
-    btnShowResults.disabled = false;
-    btnShowResults.textContent = "Ver mis resultados";
-  }
+  gaEvent("test_to_hotmart_product", {
+    lead_id,
+    arquetipo_primary: computed.primary,
+    intensidad: intensity,
+    product_url: HOTMART_PRODUCT_URL
+  });
+
+  window.location.href = HOTMART_PRODUCT_URL;
 });
 
 btnToggleDetails?.addEventListener("click", () => {
@@ -686,7 +687,7 @@ btnPlaylistCalendly?.addEventListener("click", () => {
 // ================================
 function setNextLabelAndHint(){
   const isLast = currentQ === questions.length - 1;
-  btnNext.textContent = isLast ? "Quiero ver mis resultados" : "Siguiente";
+  btnNext.textContent = isLast ? "Continuar" : "Siguiente";
 
   const q = questions[currentQ];
   qHint.textContent = q?.hint || (isLast
