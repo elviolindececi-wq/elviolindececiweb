@@ -2249,3 +2249,412 @@ ul{margin:0;padding-left:22px;color:#dbe3ea;line-height:1.9}
   .kit-v32-include-cta{margin-top:18px;padding-top:18px;}
   .kit-v32-include-cta p{font-size:.82rem;}
 }
+
+
+
+/* v34 · Interacciones minimalistas para Sistema Banda Sonora */
+.kit-system-v34 .kit-v32-subtitle{
+  max-width: 760px;
+}
+
+.kit-v34-choice,
+.kit-v34-module{
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.kit-v34-choice{
+  transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+}
+
+.kit-v34-choice:hover,
+.kit-v34-choice:focus-visible{
+  transform: translateY(-3px);
+  border-color: rgba(240, 210, 162, .38);
+  box-shadow: 0 18px 42px rgba(0,0,0,.22);
+  outline: none;
+}
+
+.kit-v34-choice.is-selected{
+  background:
+    radial-gradient(circle at top left, rgba(240,210,162,.14), transparent 34%),
+    rgba(255,255,255,.07);
+  border-color: rgba(240,210,162,.55);
+}
+
+.kit-v34-choice.is-selected::after{
+  content:"✓";
+  position:absolute;
+  top:14px;
+  right:16px;
+  width:24px;
+  height:24px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  color:#071624;
+  background:linear-gradient(135deg,#f7e7a9,#c9974d);
+  font-weight:900;
+  font-size:.85rem;
+  box-shadow:0 10px 26px rgba(201,151,77,.24);
+}
+
+.kit-v34-diagnosis{
+  margin-top:18px;
+  padding:16px 18px;
+  border-radius:18px;
+  border:1px solid rgba(240,210,162,.14);
+  background:rgba(255,255,255,.035);
+  color:rgba(255,255,255,.86);
+  transition: opacity .25s ease, transform .25s ease, border-color .25s ease;
+}
+
+.kit-v34-diagnosis p{
+  margin:0;
+  font-size:.96rem;
+  line-height:1.55;
+  color:rgba(255,255,255,.86);
+}
+
+.kit-v34-diagnosis.is-active{
+  border-color:rgba(240,210,162,.34);
+  background:rgba(240,210,162,.07);
+}
+
+.kit-v34-diagnosis strong{
+  color:var(--gold-light);
+}
+
+.kit-v34-diagnosis a{
+  color:var(--gold-light);
+  font-weight:800;
+  text-decoration:none;
+  border-bottom:1px solid rgba(240,210,162,.35);
+}
+
+.kit-v34-modules{
+  align-items: stretch;
+}
+
+.kit-v34-module{
+  min-height: 190px;
+  transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+}
+
+.kit-v34-module:hover,
+.kit-v34-module:focus-visible{
+  transform: translateY(-4px);
+  border-color: rgba(240,210,162,.42);
+  box-shadow:0 18px 42px rgba(0,0,0,.22);
+  outline:none;
+}
+
+.kit-v34-module.is-open{
+  background:
+    radial-gradient(circle at top, rgba(240,210,162,.11), transparent 42%),
+    rgba(255,255,255,.07);
+  border-color: rgba(240,210,162,.5);
+}
+
+.kit-v34-module.is-open svg{
+  filter: drop-shadow(0 0 10px rgba(240,210,162,.28));
+}
+
+.kit-v34-module-details{
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  transition:grid-template-rows .28s ease, opacity .22s ease, margin-top .22s ease;
+  margin-top:0;
+}
+
+.kit-v34-module.is-open .kit-v34-module-details{
+  grid-template-rows:1fr;
+  opacity:1;
+  margin-top:12px;
+}
+
+.kit-v34-module-details ul{
+  overflow:hidden;
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:7px;
+}
+
+.kit-v34-module-details li{
+  font-size:.78rem;
+  line-height:1.35;
+  color:rgba(255,255,255,.82);
+  text-align:left;
+  padding-left:16px;
+  position:relative;
+}
+
+.kit-v34-module-details li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:0;
+  color:var(--gold-light);
+  font-weight:900;
+}
+
+.kit-v32-icons.kit-v34-modules article h4{
+  font-size:.88rem;
+  line-height:1.15;
+}
+
+.kit-v32-icons.kit-v34-modules article p{
+  font-size:.74rem;
+  line-height:1.35;
+}
+
+.kit-v32-icons.kit-v34-modules svg{
+  width:36px;
+  height:36px;
+  min-width:36px;
+  min-height:36px;
+  max-width:36px;
+  max-height:36px;
+  object-fit:contain;
+  overflow:visible;
+}
+
+.kit-v34-interaction-pulse{
+  animation: kitV34Pulse .42s ease;
+}
+
+@keyframes kitV34Pulse{
+  0%{ transform:scale(1); }
+  50%{ transform:scale(1.018); }
+  100%{ transform:scale(1); }
+}
+
+@media (max-width: 960px){
+  .kit-v32-icons.kit-v34-modules{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px){
+  .kit-v34-diagnosis{
+    padding:14px;
+    border-radius:16px;
+  }
+
+  .kit-v34-diagnosis p{
+    font-size:.88rem;
+  }
+
+  .kit-v32-icons.kit-v34-modules{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap:10px;
+  }
+
+  .kit-v34-module{
+    min-height:160px;
+    padding:16px 12px;
+  }
+
+  .kit-v32-icons.kit-v34-modules article h4{
+    font-size:.76rem;
+    line-height:1.12;
+  }
+
+  .kit-v32-icons.kit-v34-modules article p{
+    font-size:.68rem;
+    line-height:1.25;
+  }
+
+  .kit-v34-module-details li{
+    font-size:.68rem;
+    line-height:1.28;
+  }
+
+  .kit-v32-icons.kit-v34-modules svg{
+    width:30px;
+    height:30px;
+    min-width:30px;
+    min-height:30px;
+    max-width:30px;
+    max-height:30px;
+  }
+}
+
+@media (max-width: 380px){
+  .kit-v32-icons.kit-v34-modules{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+
+/* v35 · Hero de producto y audio Turning Page */
+.kit-v35-featureline{
+  margin:14px auto 0;
+  max-width:760px;
+  color:rgba(255,255,255,.78);
+  font-size:clamp(.82rem,1.6vw,1rem);
+  line-height:1.55;
+  letter-spacing:.02em;
+}
+.kit-v35-authorityline{
+  margin:12px auto 0;
+  max-width:820px;
+  color:rgba(240,210,162,.92);
+  font-size:clamp(.88rem,1.8vw,1.05rem);
+  line-height:1.6;
+}
+.kit-system-v32 .kit-v32-hero h2{
+  max-width:980px;
+}
+.kit-system-v32 .kit-v32-subtitle{
+  max-width:880px;
+}
+.kit-v32-authority p{
+  max-width:68ch;
+}
+@media (max-width:760px){
+  .kit-v35-featureline{
+    font-size:.82rem;
+    line-height:1.45;
+    margin-top:12px;
+  }
+  .kit-v35-authorityline{
+    font-size:.86rem;
+    line-height:1.5;
+    margin-top:10px;
+  }
+}
+
+
+
+/* v36 · Ajustes de copy y jerarquía visual */
+.kit-system-v32 .kit-v32-hero{
+  max-width:980px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.kit-system-v32 .kit-v32-hero h2{
+  max-width:900px;
+  font-size:clamp(3rem,6vw,6rem);
+  line-height:.92;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+.kit-system-v32 .kit-v32-subtitle{
+  max-width:760px;
+  font-size:clamp(1.15rem,2vw,1.55rem);
+  line-height:1.5;
+  color:#eef4f8;
+}
+.kit-v35-authorityline strong{
+  color:#f0d28d;
+}
+.kit-v32-step-grid article p{
+  max-width:34ch;
+}
+.kit-v32-before-after article h3{
+  font-size:clamp(2.05rem,3.5vw,3.7rem);
+  line-height:1.02;
+}
+@media (max-width:760px){
+  .kit-system-v32 .kit-v32-hero h2{
+    font-size:clamp(2.65rem,13vw,4rem);
+    line-height:.93;
+  }
+  .kit-system-v32 .kit-v32-subtitle{
+    font-size:1.05rem;
+    line-height:1.5;
+  }
+  .kit-v35-featureline{
+    max-width:32ch;
+  }
+  .kit-v32-before-after article h3{
+    font-size:clamp(2rem,10vw,2.85rem);
+  }
+}
+
+
+/* v37 · Refinamiento visual del hero */
+.kit-system-v32 .kit-v32-hero{
+  max-width:980px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+}
+
+.kit-system-v32 .kit-v32-hero h2{
+  max-width:900px;
+  margin-left:0;
+  margin-right:0;
+}
+
+.kit-system-v32 .kit-v32-subtitle{
+  max-width:760px;
+  margin-left:0;
+  margin-right:0;
+}
+
+.kit-v35-featureline{
+  max-width:760px;
+  margin:26px 0 0 0;
+  text-align:left;
+  color:rgba(255,255,255,.72);
+  font-size:clamp(.9rem,1.45vw,1rem);
+  line-height:1.55;
+  letter-spacing:.015em;
+}
+
+.kit-v35-authorityline{
+  max-width:760px;
+  margin:18px 0 0 0;
+  text-align:left;
+  color:rgba(240,210,162,.94);
+  font-size:clamp(.92rem,1.55vw,1.05rem);
+  line-height:1.65;
+}
+
+.kit-v32-scroll{
+  display:flex;
+  width:100%;
+  justify-content:center;
+  align-items:center;
+  margin:34px auto 0;
+  color:#d8bd78;
+  font-weight:800;
+  text-align:center;
+  text-decoration:none;
+  transition:opacity .25s ease, transform .25s ease;
+}
+
+.kit-v32-scroll:hover{
+  opacity:.9;
+  transform:translateY(2px);
+}
+
+@media (max-width:760px){
+  .kit-system-v32 .kit-v32-hero{
+    max-width:none;
+  }
+
+  .kit-v35-featureline{
+    max-width:100%;
+    margin-top:20px;
+    font-size:.84rem;
+    line-height:1.5;
+  }
+
+  .kit-v35-authorityline{
+    max-width:100%;
+    margin-top:14px;
+    font-size:.88rem;
+    line-height:1.55;
+  }
+
+  .kit-v32-scroll{
+    margin-top:28px;
+  }
+}
